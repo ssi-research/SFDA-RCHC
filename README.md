@@ -3,7 +3,7 @@
 ----
 > Idit Diamant,  Roy H. Jennings, Oranit Dror, Hai Victor Habi, Arnon Netzer <br/> Sony Semiconductor Israel
 
-This repository contains the official implementation of the paper: Reconciling a Centroid-Hypothesis Conflict in Source-Free Domain Adaptation [arXiv]. 
+This repository contains the official implementation of the paper: Reconciling a Centroid-Hypothesis Conflict in Source-Free Domain Adaptation [[arXiv]](https://arxiv.org/pdf/2212.03795.pdf). 
 
 ### Abstract
 
