@@ -1,5 +1,5 @@
 """
- This file was copied from https://github.com/tim-learn/SHOT-plus and modified for this project needs.
+ This file was copied from https://github.com/tim-learn/SHOT-plus/code/uda/utils.py and modified for this project needs.
  The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
 """
 

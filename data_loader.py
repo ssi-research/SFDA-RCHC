@@ -1,3 +1,7 @@
+"""
+ This file was copied from https://github.com/tim-learn/SHOT-plus/code/uda/data_list.py and modified for this project needs.
+ The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
+"""
 
 from torch.utils.data import Dataset
 import torch

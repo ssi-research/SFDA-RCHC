@@ -1,3 +1,9 @@
+"""
+ This file was copied from https://github.com/tim-learn/SHOT-plus/code/uda/network.py and modified for this project needs.
+ The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
+"""
+
+
 import torch.nn as nn
 import torch
 from torchvision import models

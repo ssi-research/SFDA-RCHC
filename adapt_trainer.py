@@ -1,7 +1,9 @@
 
 """
- Parts of this code are based on https://github.com/tim-learn/SHOT-plus
+ Parts of this code are based on https://github.com/tim-learn/SHOT-plus/code/uda/image_target.py
+ The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
 """
+
 
 import torch
 import torch.nn as nn
@@ -24,7 +26,7 @@ def op_copy(optimizer):
 
 
 ##############################
-class TrainerG():
+class Trainer():
 
     def __init__(self, network, netR, optimizer, settings):
 
@@ -64,7 +66,7 @@ class TrainerG():
                                                 num_workers=8)
 
         self.set_mode_val()
-        self.val_over_val_set()
+        self.validation()
         self.log_errors()
         self.set_mode_train()
 
@@ -305,7 +307,7 @@ class TrainerG():
 
 
     ##############################
-    def val_over_val_set(self):
+    def validation(self):
 
         with torch.no_grad():
             self.summary_dict = {}

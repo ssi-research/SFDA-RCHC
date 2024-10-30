@@ -1,8 +1,7 @@
 """
- This file was copied from https://github.com/tim-learn/SHOT-plus and modified for this project needs.
+ This file was copied from https://github.com/tim-learn/SHOT-plus/code/uda
  The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
 """
-
 
 import torch
 import torch.utils.data

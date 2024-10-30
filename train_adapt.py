@@ -1,17 +1,22 @@
 
+"""
+ Parts of this code are based on https://github.com/tim-learn/SHOT-plus/code/uda/image_target.py
+ The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
+"""
+
+
 import torch
 import torch.optim as optim
 import numpy as np
 import os
 import networks as nets
 import warnings
-from Trainer_adapt import TrainerG
+from adapt_trainer import Trainer
 import argparse
 import random
 
 warnings.simplefilter("ignore", UserWarning)
 
-max_val_acc = -10000
 
 def op_copy(optimizer):
     for param_group in optimizer.param_groups:
@@ -216,29 +221,29 @@ def main():
 
 
     # TRAINING AND VALIDATION
-    trainval(network, netR, optimizer, exp_name, settings)
+    train(network, netR, optimizer, exp_name, settings)
 
 
-def trainval(network, netR, optimizer, exp_name, settings):
+def train(network, netR, optimizer, exp_name, settings):
     global least_val_loss
 
     train_iter = settings['start_iter']
-    trainer_G = TrainerG(network, netR, optimizer, settings)
-    max_iter = trainer_G.max_iter
+    trainer = Trainer(network, netR, optimizer, settings)
+    max_iter = trainer.max_iter
 
     while True:
 
-        trainer_G.set_mode_train()
-        trainer_G.train()
+        trainer.set_mode_train()
+        trainer.train()
 
-        if train_iter % (trainer_G.interval_iter) == 0 or train_iter == max_iter:
+        if train_iter % (trainer.interval_iter) == 0 or train_iter == max_iter:
 
             print("\n----------- train_iter " + str(train_iter) + ' -----------\n')
 
             print('validating')
 
-            trainer_G.set_mode_val()
-            test(trainer_G, settings)
+            trainer.set_mode_val()
+            test(trainer, settings)
 
             if train_iter == max_iter:
                 dict_to_save = {component: network.components[component].cpu().state_dict() for component in
@@ -252,17 +257,14 @@ def trainval(network, netR, optimizer, exp_name, settings):
         train_iter += 1
 
 
-def test(trainer_G, settings):
-    global max_val_acc
+def test(trainer, settings):
 
     if settings['dataset_name'] == 'VisDA-C':
-        val_record, val_record_classes = trainer_G.val_over_val_set()
+        val_acc, val_acc_classes = trainer.validation()
     else:
-        val_record = trainer_G.val_over_val_set()
+        val_acc = trainer.validation()
 
-    val_acc = val_record
-    max_val_acc = max(val_acc, max_val_acc)
-    trainer_G.log_errors()
+    trainer.log_errors()
 
     print("\n--- val accuracy: " + str(val_acc) + ' ---\n')
 
@@ -271,7 +273,7 @@ def test(trainer_G, settings):
                        'Sktbrd', 'Train', 'Truck']
         for i in range(0, len(class_names)):
             curr_str = "val acc - " + class_names[i]
-            print("\n ---" + curr_str + ": "+ str(val_record_classes[i]) + ' ---\n')
+            print("\n ---" + curr_str + ": "+ str(val_acc_classes[i]) + ' ---\n')
 
 
 
