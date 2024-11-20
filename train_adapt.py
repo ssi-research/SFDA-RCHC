@@ -1,5 +1,8 @@
 
 """
+ This file was originaly copied from https://sites.google.com/view/inheritune (https://drive.google.com/file/d/1Mx7kdyDHZLS5Nc_VlsF65SlN1vSv3yqE/view?usp=sharing) and modified for this project needs.
+ The license of the file is in: https://sites.google.com/view/inheritune (https://opensource.org/license/MIT)
+
  Parts of this code are based on https://github.com/tim-learn/SHOT-plus/code/uda/image_target.py
  The license of the file is in: https://github.com/tim-learn/SHOT-plus/blob/master/LICENSE
 """
